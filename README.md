@@ -67,6 +67,48 @@ src/
 2. Set up the required tables (users, books, etc.)
 3. Update the database connection settings in the application
 
+### Database Setup
+
+Use the following SQL script to create the necessary database structure:
+
+```sql
+-- Database: `library`
+
+-- Table structure for table `admins`
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Table structure for table `books`
+CREATE TABLE `books` (
+  `Id` int(11) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  `Author` varchar(255) NOT NULL,
+  `Year` int(11) NOT NULL,
+  `Pages` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Indexes for table `admins`
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+-- Indexes for table `books`
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`Id`);
+
+-- AUTO_INCREMENT for table `admins`
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- AUTO_INCREMENT for table `books`
+ALTER TABLE `books`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+```
+
 ### Running the Application
 
 1. Clone this repository
