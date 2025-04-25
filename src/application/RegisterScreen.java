@@ -37,10 +37,12 @@ public class RegisterScreen {
         // Create buttons
         Button registerBtn = new Button("Register");
         Button cancelBtn = new Button("Cancel");
+        Button backBtn = new Button("Back");
 
         // Apply button styles from the CSS
         registerBtn.getStyleClass().add("button");
         cancelBtn.getStyleClass().add("button-cancel");
+        backBtn.getStyleClass().add("button");
 
         // Add components to grid
         root.add(emailLabel, 0, 0);
@@ -51,6 +53,7 @@ public class RegisterScreen {
         root.add(confirmPasswordField, 1, 2);
         root.add(registerBtn, 1, 3);
         root.add(cancelBtn, 0, 3);
+        root.add(backBtn, 0, 4, 2, 1);  // Add Back button in a new row spanning 2 columns
 
         // Set up button actions
         registerBtn.setOnAction(e -> {
@@ -67,6 +70,10 @@ public class RegisterScreen {
         });
 
         cancelBtn.setOnAction(e -> stage.close()); // Close the register screen
+
+        backBtn.setOnAction(e -> {
+            new WelcomeScreen().show(stage); // Navigate back to the Welcome Screen
+        });
 
         // Set the scene and show
         Scene scene = new Scene(root, 400, 250);

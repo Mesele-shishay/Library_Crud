@@ -33,10 +33,12 @@ public class LoginScreen {
         // Create buttons
         Button loginBtn = new Button("Login");
         Button cancelBtn = new Button("Cancel");
+        Button backBtn = new Button("Back");
 
         // Apply button styles from the CSS
         loginBtn.getStyleClass().add("button");
         cancelBtn.getStyleClass().add("button-cancel");
+        backBtn.getStyleClass().add("button");
 
         // Add components to grid
         root.add(emailLabel, 0, 0);
@@ -45,6 +47,7 @@ public class LoginScreen {
         root.add(passwordField, 1, 1);
         root.add(loginBtn, 1, 2);
         root.add(cancelBtn, 0, 2);
+        root.add(backBtn, 0, 3, 2, 1); // Add Back button in a new row spanning 2 columns
 
         // Set up button actions
         loginBtn.setOnAction(e -> {
@@ -63,6 +66,10 @@ public class LoginScreen {
         });
 
         cancelBtn.setOnAction(e -> stage.close());
+
+        backBtn.setOnAction(e -> {
+            new WelcomeScreen().show(stage); // Navigate back to the Welcome Screen
+        });
 
         // Set the scene and show
         Scene scene = new Scene(root, 400, 250);

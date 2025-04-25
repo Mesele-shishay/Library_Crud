@@ -23,16 +23,22 @@ public class WelcomeScreen {
         // Buttons
         Button loginButton = new Button("Login");
         Button registerButton = new Button("Register");
+        Button developersButton = new Button("Developers");
 
         loginButton.getStyleClass().add("proceed-button");
         registerButton.getStyleClass().add("proceed-button");
+        developersButton.getStyleClass().add("proceed-button");
 
         loginButton.setOnAction(e -> new LoginScreen().show(stage));
         registerButton.setOnAction(e -> {
             new RegisterScreen().show(stage); // Open Register Screen
         });
 
-        welcomePage.getChildren().addAll(welcomeLabel, descriptionLabel, loginButton, registerButton);
+        developersButton.setOnAction(e -> {
+            new DevelopersScreen().show(stage); // Open Developers Screen
+        });
+
+        welcomePage.getChildren().addAll(welcomeLabel, descriptionLabel, loginButton, registerButton, developersButton);
 
         Scene welcomeScene = new Scene(welcomePage, 600, 500);
         welcomeScene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());

@@ -35,26 +35,25 @@ public class MainController {
     }
 
     public void insertButton() {
-        String query = "insert into books values(" + idField.getText() + ",'" + titleField.getText() + "','" + authorField.getText() + "'," + yearField.getText() + "," + pagesField.getText() + ")";
+        String query = "INSERT INTO books (Title, Author, Year, Pages) VALUES ('" + titleField.getText() + "','" + authorField.getText() + "'," + yearField.getText() + "," + pagesField.getText() + ")";
         executeQuery(query);
-        showBooks();
+        loadData();  // Load the data again after insertion
     }
 
     public void updateButton() {
         String query = "UPDATE books SET Title='" + titleField.getText() + "', Author='" + authorField.getText() + "', Year=" + yearField.getText() + ", Pages=" + pagesField.getText() + " WHERE ID=" + idField.getText();
         executeQuery(query);
-        showBooks();
+        loadData();  // Load the data again after update
     }
 
     public void deleteButton() {
         String query = "DELETE FROM books WHERE ID=" + idField.getText();
         executeQuery(query);
-        showBooks();
+        loadData();  // Load the data again after deletion
     }
 
     private void executeQuery(String query) {
-        Connection conn = getConnection();
-        try (Statement st = conn.createStatement()) {
+        try (Connection conn = getConnection(); Statement st = conn.createStatement()) {
             st.executeUpdate(query);
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,24 +69,20 @@ public class MainController {
         }
     }
 
-    private ObservableList<Books> getBooksList() {
+    public void loadData() {
         ObservableList<Books> booksList = FXCollections.observableArrayList();
         String query = "SELECT * FROM books";
         try (Connection connection = getConnection(); Statement st = connection.createStatement(); ResultSet rs = st.executeQuery(query)) {
             while (rs.next()) {
-                Books book = new Books(rs.getInt("Id"), rs.getString("Title"), rs.getString("Author"), rs.getInt("Year"), rs.getInt("Pages"));
+                Books book = new Books(rs.getInt("ID"), rs.getString("Title"), rs.getString("Author"), rs.getInt("Year"), rs.getInt("Pages"));
                 booksList.add(book);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return booksList;
-    }
 
-    private void showBooks() {
-        ObservableList<Books> list = getBooksList();
-
-        tableView.getColumns().clear(); // Clear previous columns
+        // Populate the TableView with data
+        tableView.getColumns().clear(); // Clear existing columns
         TableColumn<Books, Integer> idColumn = new TableColumn<>("ID");
         TableColumn<Books, String> titleColumn = new TableColumn<>("Title");
         TableColumn<Books, String> authorColumn = new TableColumn<>("Author");
@@ -101,6 +96,6 @@ public class MainController {
         pagesColumn.setCellValueFactory(new PropertyValueFactory<>("pages"));
 
         tableView.getColumns().addAll(idColumn, titleColumn, authorColumn, yearColumn, pagesColumn);
-        tableView.setItems(list);
+        tableView.setItems(booksList);  // Set the items (books data) into the TableView
     }
 }
