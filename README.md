@@ -12,14 +12,6 @@ A desktop application built with JavaFX that provides CRUD (Create, Read, Update
 
 ## Screenshots
 
-> **Note:** To properly display the screenshots in this README, please save the application screenshots with the following names in the `screenshots` directory:
->
-> - welcome-screen.png
-> - developers-screen.png
-> - register-screen.png
-> - login-screen.png
-> - library-dashboard.png
-
 ### Welcome Screen
 
 ![Welcome Screen](screenshots/welcome-screen.png)
