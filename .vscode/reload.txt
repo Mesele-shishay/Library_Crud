@@ -1,0 +1,10 @@
+After making these changes, please:
+
+1. Open the Command Palette in VS Code (Ctrl+Shift+P)
+2. Type "Developer: Reload Window" and select it
+3. This will reload VS Code with the new configurations
+
+If still having issues after reload:
+1. Open Command Palette again
+2. Type "Java: Clean Java Language Server Workspace" and select it
+3. Select "Restart and delete" when prompted 

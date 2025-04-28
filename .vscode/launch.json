@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch JavaFX Application",
+            "request": "launch",
+            "mainClass": "application.Main",
+            "vmArgs": "--module-path \"C:\\Users\\Mesa\\Desktop\\java\\javafx-mysql-crud\\lib\" --add-modules=javafx.controls,javafx.fxml"
+        }
+    ]
+}
